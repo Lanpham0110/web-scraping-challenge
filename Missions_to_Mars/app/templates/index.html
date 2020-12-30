@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <link  rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="jumbotron text-center border-bottom">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape Mars Data!</a></p>
+    </div>
+   <!-- Latest Mars News Section  -->
+   <div class="container">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="media">
+          <div class="media-body">
+            <h2><b>Latest Mars News</b></h2>
+            <h4 class="heading">{{mars.title}}</h4>
+            <p>{{mars.paragraph}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </br>
+  <!-- Next div is a row, divided into two sections-->
+  <div class="row" style= margin-top:25px>
+    <!-- the featured Mars Image -->
+    <div class="col-md-8">
+      <h2>Featured Mars Image</h2>
+      <img src="{{mars.Feature_Images}}" height="600" width="750" class="img-responsive">
+    </div>
+    
+    <!-- Mars Facts -->
+    <div class="col-md-4">
+      <h4><b>Mars Facts</b></h4>
+        {{mars.mars_facts | safe}}
+    </div>
+  </div>
+  <br>
+  
+  <div class="row">
+    <div class="col-md-8 offset-4">
+      <h2 class="align-items-center"><u>Mars hemispheres</u></h2>  
+    </div>
+  </div>
+  </br>
+  {% for hem in mars.hemispheres_images %}
+  <div class="col-md-3">                  
+        <img src="{{hem.image_urls}}">
+  </div>
+  {% endfor %}
+</body>
+
+</html>
