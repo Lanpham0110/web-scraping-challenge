@@ -19,45 +19,62 @@
    <!-- Latest Mars News Section  -->
    <div class="container">
 
-    <div class="row">
-      <div class="col-md-12">
-        <div class="media">
-          <div class="media-body">
-            <h2><b>Latest Mars News</b></h2>
-            <h4 class="heading">{{mars.title}}</h4>
-            <p>{{mars.paragraph}}</p>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="media">
+            <div class="media-body">
+              <h2><b>Latest Mars News</b></h2>
+              <h4 class="heading">{{mars.title}}</h4>
+              <p>{{mars.paragraph}}</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+  
   </br>
   <!-- Next div is a row, divided into two sections-->
   <div class="row" style= margin-top:25px>
     <!-- the featured Mars Image -->
-    <div class="col-md-8">
+    <div class="col-lg-8 col-md-8 col-sm-6 col-xm-12">
       <h2>Featured Mars Image</h2>
-      <img src="{{mars.Feature_Images}}" height="600" width="750" class="img-responsive">
+      <img src="{{mars.Feature_Images}}" style="max-width:100%;" >
     </div>
     
     <!-- Mars Facts -->
-    <div class="col-md-4">
-      <h4><b>Mars Facts</b></h4>
-        {{mars.mars_facts | safe}}
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xm-12">
+      
+        <h4><b>Mars Facts</b></h4>
+          {{mars.mars_facts | safe}}
+        
     </div>
   </div>
+  
   <br>
   
-  <div class="row">
-    <div class="col-md-8 offset-4">
-      <h2 class="align-items-center"><u>Mars hemispheres</u></h2>  
+  
+    <div class="row">
+      <div class="col-md-8 offset-4">
+        <h2 class="align-items-center"><u>Mars hemispheres</u></h2>  
+      </div>
+    </div>
+    </br>
+    
+  <div class="container">
+    <div class="row">
+    {% for hem in mars.hemispheres_images %}
+      <div class="col-6 border">  
+      </br>
+        <div>
+          <img width="512 px" height="512 px" src="{{ hem.image_urls }}">
+        </div>
+
+        <div>
+          <h4> {{ hem.title }} </h4>  
+        </div>                
+      </div>
+      {% endfor %}
     </div>
   </div>
-  </br>
-  {% for hem in mars.hemispheres_images %}
-  <div class="col-md-3">                  
-        <img src="{{hem.image_urls}}">
-  </div>
-  {% endfor %}
 </body>
 
 </html>

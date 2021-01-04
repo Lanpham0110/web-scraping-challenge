@@ -52,7 +52,7 @@ def scrape():
 
    
 
-    #mars table to be scrape
+    #MARS TABLE to be scrape
     # open url in browser
     facts_url = "https://space-facts.com/mars/"
 
@@ -68,7 +68,7 @@ def scrape():
     # Use Pandas to convert the data to a HTML table string
     mars_facts= mars_table.to_html(header=False, index = False, justify="left")
 
-    # Four Hemispheres to be scrape
+    # FOUR HEMISPHERES to be scrape
     hemi_url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
 
     browser.visit(hemi_url)
@@ -78,14 +78,12 @@ def scrape():
     for i in range(len(links)):
         Four_hemi={}
         browser.find_by_css('a.product-item h3')[i].click()
-        grabbed_image= browser.links.find_by_text('Sample').first
-        #grabbing href from sample image tag
-        Four_hemi['image_urls']=grabbed_image['href']
-        #extracting title for each image
+        grabbed_image= browser.links.find_by_text('Sample').first #grabbing href from sample image tag
+        Four_hemi['image_urls']=grabbed_image['href'] #extracting title for each image
         Four_hemi['title']=browser.find_by_css('h2.title').text
-        #adding info into created list
-        image_urls.append(Four_hemi)
-        print(image_urls)
+       
+        image_urls.append(Four_hemi)  #adding info into created list
+        #print(image_urls)
         browser.back()
 
     scrape_mars ={
@@ -93,10 +91,11 @@ def scrape():
         "paragraph": paragraph_results,
         "Feature_Images": featured_image_url,
         "mars_facts": mars_facts,
-        "hemispheres_images":Four_hemi
+        "hemispheres_images":image_urls  
         }
     browser.quit()
     return scrape_mars
+    
 
 if __name__ == '__main__':
     scrape()    
